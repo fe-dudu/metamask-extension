@@ -67,7 +67,7 @@ export type FeatureFlagRegistryEntry = {
  * Remote flag values are stored in the exact format returned by the production
  * client-config API, so they can be served directly by mock-e2e.js.
  *
- * Production defaults last synced: 2026-06-16
+ * Production defaults last synced: 2026-06-23
  * Source: https://client-config.api.cx.metamask.io/v1/flags?client=extension&distribution=main&environment=prod
  */
 export const FEATURE_FLAG_REGISTRY: Record<string, FeatureFlagRegistryEntry> = {
@@ -2140,8 +2140,8 @@ export const FEATURE_FLAG_REGISTRY: Record<string, FeatureFlagRegistryEntry> = {
     type: FeatureFlagType.Remote,
     inProd: true,
     productionDefault: {
-      enabled: true,
       minimumVersion: '0.0.0',
+      enabled: false,
     },
     status: FeatureFlagStatus.Active,
   },
@@ -2165,6 +2165,7 @@ export const FEATURE_FLAG_REGISTRY: Record<string, FeatureFlagRegistryEntry> = {
       asterdex: true,
       gmx: true,
       hyperliquid: true,
+      variational: true,
     },
     status: FeatureFlagStatus.Active,
   },
@@ -2871,6 +2872,56 @@ export const FEATURE_FLAG_REGISTRY: Record<string, FeatureFlagRegistryEntry> = {
         },
       },
     ],
+    status: FeatureFlagStatus.Active,
+  },
+  corePlatformRpcFailoverForceEnabled: {
+    name: 'corePlatformRpcFailoverForceEnabled',
+    type: FeatureFlagType.Remote,
+    inProd: true,
+    productionDefault: false,
+    status: FeatureFlagStatus.Active,
+  },
+
+  coreExtensionUxCeux1024AbtestReferralUi: {
+    name: 'coreExtensionUxCeux1024AbtestReferralUi',
+    type: FeatureFlagType.Remote,
+    inProd: true,
+    productionDefault: [],
+    status: FeatureFlagStatus.Active,
+  },
+
+  coreExtensionUxCeux1096AbtestReferralUi: {
+    name: 'coreExtensionUxCeux1096AbtestReferralUi',
+    type: FeatureFlagType.Remote,
+    inProd: true,
+    productionDefault: [],
+    status: FeatureFlagStatus.Active,
+  },
+
+  perpsTAT3382AbtestTabBadge: {
+    name: 'perpsTAT3382AbtestTabBadge',
+    type: FeatureFlagType.Remote,
+    inProd: true,
+    productionDefault: {
+      versions: {
+        '13.37.0': [
+          {
+            name: 'control',
+            scope: {
+              value: 0.5,
+              type: 'threshold',
+            },
+          },
+          {
+            scope: {
+              type: 'threshold',
+              value: 1,
+            },
+            name: 'treatment',
+          },
+        ],
+      },
+    },
     status: FeatureFlagStatus.Active,
   },
 };
